@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Gracias por tu compra{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="text-success">¡Gracias por tu compra!</h1>
+    <p class="lead">Tu pedido se ha procesado con éxito.</p>
+    <a href="{{ url_for('catalogo') }}" class="btn btn-outline-primary mt-3">Volver al Catálogo</a>
+</div>
+{% endblock %}

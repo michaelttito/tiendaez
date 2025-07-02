@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Catálogo</h2>
+    <div class="row">
+        {% for id, producto in productos.items() %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border">
+                <img src="{{ url_for('static', filename='img/' ~ producto.imagen) }}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <p class="card-text text-danger fw-bold">S/. {{ '%.2f'|format(producto.precio) }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{{ url_for('agregar', pid=id) }}" class="btn btn-outline-dark">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if total is defined %}
+    <div class="text-end mt-4">
+        <h4>Total: <span class="text-success">S/. {{ '%.2f'|format(total|float) }}</span></h4>
+
+        <form method="POST" action="{{ url_for('pagar') }}" style="display: inline;">
+            <button type="submit" class="btn btn-success mt-2">Pagar con Stripe</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

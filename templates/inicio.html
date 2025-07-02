@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Mi Tienda de Ropa{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center">
+        <h1 class="display-4 fw-bold">Bienvenido a TtitoClothes</h1>
+        <p class="lead">Encuentra lo mejor en ropa urbana, deportiva y casual.</p>
+    </div>
+
+    <!-- Ofertas -->
+    <div class="mt-5">
+        <h3 class="mb-4">Ofertas Exclusivas</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='img/oferta1.jpg') }}" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='img/oferta2.jpg') }}" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+
+    <!-- Marcas -->
+    <div class="mt-5">
+        <h3 class="mb-4">Nuestras Marcas</h3>
+        <div class="row text-center">
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/nike.png') }}" style="height: 80px;" alt="Nike">
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/adidas.png') }}" style="height: 80px;" alt="Adidas">
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/puma.png') }}" style="height: 80px;" alt="Puma">
+            </div>
+        </div>
+    </div>
+
+    <!-- Métodos de Pago -->
+    <div class="mt-5">
+        <h3 class="mb-4">Métodos de Pago Disponibles</h3>
+        <div class="row text-center">
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/stripe.png') }}" style="height: 50px;" alt="Stripe">
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/yape.png') }}" style="height: 50px;" alt="Yape">
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/plin.png') }}" style="height: 50px;" alt="Plin">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{{ url_for('catalogo') }}" class="btn btn-dark btn-lg">Ver Catálogo</a>
+    </div>
+</div>
+{% endblock %}

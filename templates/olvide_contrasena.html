@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuperar Contraseña{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="mb-4 text-center">Recuperar Contraseña</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-info">{{ messages[0] }}</div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('olvide_contrasena') }}">
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico registrado</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">Enviar código</button>
+    </form>
+
+    <div class="mt-3 text-center">
+        <a href="{{ url_for('login') }}">Volver al login</a>
+    </div>
+</div>
+{% endblock %}

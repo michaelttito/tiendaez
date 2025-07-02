@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrito de Compras{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Carrito</h2>
+
+    {% if carrito %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pid, item in carrito.items() %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>S/. {{ '%.2f'|format(item.precio|float) }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>S/. {{ '%.2f'|format((item.precio|float) * (item.cantidad|int)) }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                        <a href="{{ url_for('quitar', pid=pid) }}" class="btn btn-warning btn-sm" title="Quitar uno">
+                            <i class="bi bi-dash"></i>
+                        </a>
+                        <a href="{{ url_for('aumentar', pid=pid) }}" class="btn btn-success btn-sm" title="Agregar uno">
+                            <i class="bi bi-plus"></i>
+                        </a>
+                        <a href="{{ url_for('eliminar', pid=pid) }}" class="btn btn-danger btn-sm" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-end">
+        <h4>Total: <span class="text-success">S/. {{ '%.2f'|format(total|float) }}</span></h4>
+        <form method="POST" action="{{ url_for('pagar') }}">
+            <button type="submit" class="btn btn-success mt-2">Pagar con Stripe</button>
+            
+        </form>
+        
+    </div>
+    {% else %}
+    <div class="alert alert-warning">No hay productos en el carrito.</div>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{{ url_for('catalogo') }}" class="btn btn-secondary">Volver al Catálogo</a>
+
+    </div>
+</div>
+{% endblock %}

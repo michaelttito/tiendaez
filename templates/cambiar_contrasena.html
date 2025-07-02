@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Cambiar Contraseña{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="mb-4 text-center">Cambiar Contraseña</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-warning">{{ messages[0] }}</div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('cambiar_contrasena') }}">
+        <div class="mb-3">
+            <label for="nueva_contrasena" class="form-label">Nueva contraseña</label>
+            <input type="password" class="form-control" id="nueva_contrasena" name="nueva_contrasena" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="repetir_contrasena" class="form-label">Repetir contraseña</label>
+            <input type="password" class="form-control" id="repetir_contrasena" name="repetir_contrasena" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Guardar nueva contraseña</button>
+    </form>
+
+    <div class="mt-3 text-center">
+        <a href="{{ url_for('login') }}">Volver al login</a>
+    </div>
+</div>
+{% endblock %}
